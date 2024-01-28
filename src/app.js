@@ -17,8 +17,8 @@ const App = () => {
           step={1}
           name="custom-input"
           value={0}
-          onChange={(e) => console.log(e.target.name, e.target.value)}
-          onBlur={(e) => console.log(e.target.name, e.target.value)}
+          onChange={(e) => console.log('onChange:',e.target.name, e.target.value)}
+          onBlur={(e) => console.log('onBlur:',e.target.name, e.target.value)}
           disabled={false}
           border={true}
         />
@@ -27,8 +27,8 @@ const App = () => {
       <div className="mt-4">
         <h2 className="text-xl font-bold mb-2">Room Allocation:</h2>
         <RoomAllocation 
-          guest={10}
-          room={3}
+          guest={12}
+          room={5}
           onChange={handleRoomAllocationChange}
         />
       </div>

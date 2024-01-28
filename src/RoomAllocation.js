@@ -29,13 +29,13 @@ const RoomAllocation = ({ guest, room, onChange }) => {
   return (
     <div className="space-y-4 border-2 border-dashed border-gray-300 p-4 w-[500px]">
       <div className="text-lg">住客人數：{guest}人 / {room}房</div>
-      <div className="bg-[#eefdff] border border-solid border-[#cbeef8] h-[50px] p-2 rounded-md flex items-center text-gray-600">
+      <div className="bg-[#eefdff] border border-solid border-[#cbeef8] h-[60px] pl-4 p-2 rounded-md flex items-center text-gray-600">
         尚未分配人數：{remainingGuests}人
       </div>
       {allocations.map((allocation, index) => (
-        <div key={index} className="border p-4 rounded-md">
+        <div key={index} className={`${index!=allocations.length-1?'border-b':''} p-2 rounded-md`}>
           <div className="text-lg mb-2">房間：{allocation.adult + allocation.child}人</div>
-          <div className="flex justify-between items-center mb-2">
+          <div className="flex justify-between items-center">
             {/* 大人 */}
             <div className="flex flex-col">
                 <label className="text-sm font-medium">大人</label>
@@ -47,8 +47,11 @@ const RoomAllocation = ({ guest, room, onChange }) => {
               step={1}
               name={`adult-${index}`}
               value={allocation.adult}
-              onChange={(e) => updateAllocation(index, 'adult', parseInt(e.target.value, 10))}
-              onBlur={(e) => console.log(e.target.name, e.target.value)}
+              onChange={(e) => {
+                console.log('onChange:',e.target.name, e.target.value)
+                updateAllocation(index, 'adult', parseInt(e.target.value, 10))
+              }}
+              onBlur={(e) => console.log('onblur:',e.target.name, e.target.value)}
               incrementDisabled={remainingGuests <= 0 || allocation.adult + allocation.child >= 4}
               decrementDisabled={allocation.adult === 1}
               disabled={false}
@@ -64,8 +67,11 @@ const RoomAllocation = ({ guest, room, onChange }) => {
               step={1}
               name={`child-${index}`}
               value={allocation.child}
-              onChange={(e) => updateAllocation(index, 'child', parseInt(e.target.value, 10))}
-              onBlur={(e) => console.log(e.target.name, e.target.value)}
+              onChange={(e) => {
+                console.log('onChange:',e.target.name, e.target.value)
+                updateAllocation(index, 'child', parseInt(e.target.value, 10))
+              }}
+              onBlur={(e) => console.log('onblur:',e.target.name, e.target.value)}
               incrementDisabled={remainingGuests <= 0 || allocation.adult + allocation.child >= 4}
               decrementDisabled={allocation.child === 0}
               disabled={false}  

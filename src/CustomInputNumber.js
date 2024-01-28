@@ -80,7 +80,9 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
 
   const handleBlur = (e) => {
     // console.log('handleBlur:',e.target)
-    onBlur(e);
+    if(e&&e.target&&e.target.value){
+      onBlur(e);
+    }
   };
 
   return (
