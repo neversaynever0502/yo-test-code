@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 把input的上下箭頭移掉 */
+/* 把input的上下箭頭移掉，也能讓文字置中 */
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
