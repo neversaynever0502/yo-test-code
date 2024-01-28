@@ -89,6 +89,22 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
     }
   };
 
+  const handleIncrementAction = (e) => {
+    if (e.type === "mousedown" && e.button !== 0) return; // 对于鼠标事件，只响应左键点击
+    handleIncrement();
+  };
+  
+  const handleDecrementAction = (e) => {
+    if (e.type === "mousedown" && e.button !== 0) return; // 对于鼠标事件，只响应左键点击
+    handleDecrement();
+  };
+  
+  const handleActionRelease = (e) => {
+    if (e.type === "mouseup" && e.button !== 0) return; // 对于鼠标事件，只响应左键释放
+    handleIncrementRelease();
+  };
+  
+
   const handleBlur = (e) => {
     // console.log('handleBlur:',e.target)
     if(e&&e.target&&e.target.value){
@@ -99,10 +115,10 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
   return (
     <div className={`inline-flex ${border?'border-2 border-dashed border-gray-300':''} rounded p-[8px]`} onBlur={handleBlur}>
       <button
-        onMouseDown={handleDecrement}
-        onMouseUp={handleDecrementRelease}
-        // onTouchStart={handleDecrement}
-        // onTouchEnd={handleDecrementRelease}     
+        onMouseDown={handleDecrementAction}
+        onMouseUp={handleActionRelease}
+        onTouchStart={handleDecrementAction}
+        onTouchEnd={handleActionRelease}   
         disabled={decrementDisabled || disabled || inputValue <= min} 
         className="w-12 h-12 mr-[8px] text-lg bg-white border border-[#14a0d2] text-[#14a0d2] disabled:opacity-50 rounded-md select-none"
       >
@@ -117,10 +133,10 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
         disabled={disabled}
       />
       <button
-        onMouseDown={handleIncrement}
-        onMouseUp={handleIncrementRelease}
-        // onTouchStart={handleIncrement} 
-        // onTouchEnd={handleIncrementRelease} 
+        onMouseDown={handleIncrementAction}
+        onMouseUp={handleActionRelease}
+        onTouchStart={handleIncrementAction}
+        onTouchEnd={handleActionRelease}
         disabled={incrementDisabled || disabled || inputValue >= max} 
         className="w-12 h-12 text-lg bg-white border border-[#14a0d2] text-[#14a0d2] disabled:opacity-50 rounded-md select-none"
       >
