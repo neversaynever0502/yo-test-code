@@ -101,8 +101,8 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
       <button
         onMouseDown={handleDecrement}
         onMouseUp={handleDecrementRelease}
-        onTouchStart={handleDecrement}
-        onTouchEnd={handleDecrementRelease}     
+        // onTouchStart={handleDecrement}
+        // onTouchEnd={handleDecrementRelease}     
         disabled={decrementDisabled || disabled || inputValue <= min} 
         className="w-12 h-12 mr-[8px] text-lg bg-white border border-[#14a0d2] text-[#14a0d2] disabled:opacity-50 rounded-md select-none"
       >
@@ -119,8 +119,8 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
       <button
         onMouseDown={handleIncrement}
         onMouseUp={handleIncrementRelease}
-        onTouchStart={handleIncrement} 
-        onTouchEnd={handleIncrementRelease} 
+        // onTouchStart={handleIncrement} 
+        // onTouchEnd={handleIncrementRelease} 
         disabled={incrementDisabled || disabled || inputValue >= max} 
         className="w-12 h-12 text-lg bg-white border border-[#14a0d2] text-[#14a0d2] disabled:opacity-50 rounded-md select-none"
       >
