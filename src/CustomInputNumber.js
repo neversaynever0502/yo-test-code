@@ -36,7 +36,7 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
             return prevValue;
           }
         });
-      }, 100); 
+      }, 300); 
       setIntervalId(id1);
     }
   };
@@ -58,7 +58,7 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
             return prevValue;
           }
         });
-      }, 100);
+      }, 300);
       setIntervalId(id2);
     }
   };
