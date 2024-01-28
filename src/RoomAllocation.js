@@ -3,7 +3,11 @@ import CustomInputNumber from './CustomInputNumber';
 
 const RoomAllocation = ({ guest, room, onChange }) => {
   const initialAllocation = () => {
-    return Array.from({ length: room }, () => ({ adult: 1, child: 0 }));
+    let allocation = [];
+    for (let i = 0; i < room; i++) {
+        allocation.push({ adult: 1, child: 0 });
+    }
+    return allocation;
   };
 
   const [allocations, setAllocations] = useState(initialAllocation());
