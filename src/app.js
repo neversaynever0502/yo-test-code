@@ -27,8 +27,8 @@ const App = () => {
       <div className="mt-4">
         <h2 className="text-xl font-bold mb-2">Room Allocation:</h2>
         <RoomAllocation 
-          guest={12}
-          room={5}
+          guest={10}
+          room={3}
           onChange={handleRoomAllocationChange}
         />
       </div>

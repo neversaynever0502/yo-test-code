@@ -47,7 +47,7 @@ const RoomAllocation = ({ guest, room, onChange }) => {
             </div>
             <CustomInputNumber
               min={1}
-              max={4}
+              max={4 - allocation.child}
               step={1}
               name={`adult-${index}`}
               value={allocation.adult}

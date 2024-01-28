@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
 const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disabled, incrementDisabled, decrementDisabled, border }) => {
   const [inputValue, setInputValue] = useState(value);
@@ -19,25 +19,28 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
   const createEvent = (name, value) => {
     return { target: { name, value } };
   };
+
+
   const handleIncrement = () => {
     if (inputValue < max) {
       const newValue = Math.min(max, Number(inputValue) + step);
       setInputValue(newValue);
+      // 為了讓onChange事件能夠觸發，我們需要手動創建一個事件對象
       onChange(createEvent(name, newValue.toString()));
-      const id1 = setInterval(() => {
+      const id = setInterval(() => {
         setInputValue(prevValue => {
           const updatedValue = Math.min(max, Number(prevValue) + step);
-          if (prevValue < max) {
+          if (Number(prevValue) < max) {
             onChange(createEvent(name, updatedValue.toString()));
             return updatedValue;
           } else {
-            clearInterval(id1);
+            clearInterval(id);
             setIntervalId(null);
             return prevValue;
           }
         });
       }, 300); 
-      setIntervalId(id1);
+      setIntervalId(id);
     }
   };
   
@@ -45,23 +48,31 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
     if (inputValue > min) {
       const newValue = Math.max(min, Number(inputValue) - step);
       setInputValue(newValue);
+      // 為了讓onChange事件能夠觸發，我們需要手動創建一個事件對象
       onChange(createEvent(name, newValue.toString()));
-      const id2 = setInterval(() => {
+      const id = setInterval(() => {
         setInputValue(prevValue => {
-          const updatedValue = Math.max(min, prevValue - step);
-          if (prevValue > min) {
+          const updatedValue = Math.max(min, Number(prevValue) - step);
+          if (Number(prevValue) > min) {
             onChange(createEvent(name, updatedValue.toString()));
             return updatedValue;
           } else {
-            clearInterval(id2);
+            clearInterval(id);
             setIntervalId(null);
             return prevValue;
           }
         });
       }, 300);
-      setIntervalId(id2);
+      setIntervalId(id);
     }
   };
+
+  useEffect(()=>{
+    console.log('inputValue:',inputValue,max)
+    // setInputValue(value)
+  },[
+    inputValue
+  ])
 
 
   const handleIncrementRelease = () => {
