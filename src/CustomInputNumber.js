@@ -25,7 +25,7 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
     if (inputValue < max) {
       const newValue = Math.min(max, Number(inputValue) + step);
       setInputValue(newValue);
-      // 為了讓onChange事件能夠觸發，我們需要手動創建一個事件對象
+      // 為了讓onChange事件能夠觸發，這邊手動創建一個事件對象
       onChange(createEvent(name, newValue.toString()));
       const id = setInterval(() => {
         setInputValue(prevValue => {
@@ -48,7 +48,6 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
     if (inputValue > min) {
       const newValue = Math.max(min, Number(inputValue) - step);
       setInputValue(newValue);
-      // 為了讓onChange事件能夠觸發，我們需要手動創建一個事件對象
       onChange(createEvent(name, newValue.toString()));
       const id = setInterval(() => {
         setInputValue(prevValue => {
@@ -93,9 +92,7 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
     <div className={`inline-flex ${border?'border-2 border-dashed border-gray-300':''} rounded p-[8px]`} onBlur={handleBlur}>
       <button
         onMouseDown={handleDecrement}
-        onMouseUp={handleDecrementRelease}
-        // onTouchStart={handleDecrement}
-        // onTouchEnd={handleDecrementRelease}     
+        onMouseUp={handleDecrementRelease}   
         disabled={decrementDisabled || disabled || inputValue <= min} 
         className="w-12 h-12 mr-[8px] text-lg bg-white border border-[#14a0d2] text-[#14a0d2] disabled:opacity-50 rounded-md select-none"
       >
@@ -112,8 +109,6 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
       <button
         onMouseDown={handleIncrement}
         onMouseUp={handleIncrementRelease}
-        // onTouchStart={handleIncrement} 
-        // onTouchEnd={handleIncrementRelease} 
         disabled={incrementDisabled || disabled || inputValue >= max} 
         className="w-12 h-12 text-lg bg-white border border-[#14a0d2] text-[#14a0d2] disabled:opacity-50 rounded-md select-none"
       >
