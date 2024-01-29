@@ -30,6 +30,8 @@ const RoomAllocation = ({ guest, room, onChange }) => {
     setRemainingGuests(guest - totalAssigned);
   }, [allocations, guest]);
 
+  
+
   return (
     <div className="space-y-4 border-2 border-dashed border-gray-300 p-4 w-[500px]">
       <div className="text-lg">住客人數：{guest}人 / {room}房</div>

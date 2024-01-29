@@ -31,7 +31,7 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
       const id1 = setInterval(() => {
         setInputValue(prevValue => {
           const updatedValue = Math.min(max, Number(prevValue) + step);
-          if (Number(prevValue) < max) {
+          if (updatedValue < max) {
             onChange(createEvent(name, updatedValue.toString()));
             return updatedValue;
           } else {
@@ -53,8 +53,7 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
       const id2 = setInterval(() => {
         setInputValue(prevValue => {
           const updatedValue = Math.max(min, Number(prevValue) - step);
-          console.log('updatedValue:',Number(prevValue),min)
-          if (Number(prevValue) > min) {
+          if (updatedValue > min) {
             onChange(createEvent(name, updatedValue.toString()));
             return updatedValue;
           } else {
@@ -77,7 +76,7 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
   };
 
   const handleDecrementRelease = () => {
-    if (intervalId !== null) {
+    if (intervalId2 !== null) {
       clearInterval(intervalId2);
       setIntervalId2(null);
     }
