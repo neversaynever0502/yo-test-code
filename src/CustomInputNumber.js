@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react';
 const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disabled, incrementDisabled, decrementDisabled, border }) => {
   const [inputValue, setInputValue] = useState(value);
   const [intervalId, setIntervalId] = useState(null);
+  const [intervalId2, setIntervalId2] = useState(null);
 
   
 
@@ -27,20 +28,20 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
       setInputValue(newValue);
       // 為了讓onChange事件能夠觸發，這邊手動創建一個事件對象
       onChange(createEvent(name, newValue.toString()));
-      const id = setInterval(() => {
+      const id1 = setInterval(() => {
         setInputValue(prevValue => {
           const updatedValue = Math.min(max, Number(prevValue) + step);
           if (Number(prevValue) < max) {
             onChange(createEvent(name, updatedValue.toString()));
             return updatedValue;
           } else {
-            clearInterval(id);
+            clearInterval(id1);
             setIntervalId(null);
             return prevValue;
           }
         });
       }, 300); 
-      setIntervalId(id);
+      setIntervalId(id1);
     }
   };
   
@@ -49,20 +50,21 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
       const newValue = Math.max(min, Number(inputValue) - step);
       setInputValue(newValue);
       onChange(createEvent(name, newValue.toString()));
-      const id = setInterval(() => {
+      const id2 = setInterval(() => {
         setInputValue(prevValue => {
           const updatedValue = Math.max(min, Number(prevValue) - step);
+          console.log('updatedValue:',Number(prevValue),min)
           if (Number(prevValue) > min) {
             onChange(createEvent(name, updatedValue.toString()));
             return updatedValue;
           } else {
-            clearInterval(id);
-            setIntervalId(null);
+            clearInterval(id2);
+            setIntervalId2(null);
             return prevValue;
           }
         });
       }, 300);
-      setIntervalId(id);
+      setIntervalId2(id2);
     }
   };
 
@@ -76,8 +78,8 @@ const CustomInputNumber = ({ min, max, step, name, value, onChange, onBlur, disa
 
   const handleDecrementRelease = () => {
     if (intervalId !== null) {
-      clearInterval(intervalId);
-      setIntervalId(null);
+      clearInterval(intervalId2);
+      setIntervalId2(null);
     }
   };
 

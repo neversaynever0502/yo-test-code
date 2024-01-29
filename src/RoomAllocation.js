@@ -53,7 +53,7 @@ const RoomAllocation = ({ guest, room, onChange }) => {
               value={allocation.adult}
               onChange={(e) => {
                 console.log('onChange:',e.target.name, e.target.value)
-                updateAllocation(index, 'adult', parseInt(e.target.value, 10))
+                updateAllocation(index, 'adult', Number(e.target.value))
               }}
               onBlur={(e) => console.log('onblur:',e.target.name, e.target.value)}
               incrementDisabled={remainingGuests <= 0 || allocation.adult + allocation.child >= 4}
@@ -73,7 +73,7 @@ const RoomAllocation = ({ guest, room, onChange }) => {
               value={allocation.child}
               onChange={(e) => {
                 console.log('onChange:',e.target.name, e.target.value)
-                updateAllocation(index, 'child', parseInt(e.target.value, 10))
+                updateAllocation(index, 'child', Number(e.target.value))
               }}
               onBlur={(e) => console.log('onblur:',e.target.name, e.target.value)}
               incrementDisabled={remainingGuests <= 0 || allocation.adult + allocation.child >= 4}
